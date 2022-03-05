@@ -15,7 +15,7 @@ jobs:
 
       - run: ./script/list_stale_docs.sh
 
-  pull-request:
+  create-issue:
     runs-on: ubuntu-latest
     needs: [check_freshness]
     if: always() && (needs.check_freshness.result == 'failure')
@@ -26,10 +26,9 @@ jobs:
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
 
-      - name: pull-request
-        uses: repo-sync/pull-request@v2
+      - name: create-issue
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          destination_branch: "main"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          pr_title: "Stale doc detected ${{ steps.date.outputs.date }}"
-          pr_label: "stale-docs"
+          filename: .github/ISSUE_TEMPLATE.md

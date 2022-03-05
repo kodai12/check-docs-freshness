@@ -21,7 +21,7 @@ git ls-tree -r --name-only HEAD ./docs | while read filename; do
   # unix timestamp形式の最終更新時間だけ取り出す
   arr=($output)
   last_edited_at=${arr[0]}
-  if [ $threshold -lt $last_edited_at ]; then
+  if [ $threshold -gt $last_edited_at ]; then
       stale_files+=($filename)
   fi
 

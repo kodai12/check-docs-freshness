@@ -1,8 +1,11 @@
 name: Check docs freshness
 
 on:
-  schedule:
-    - cron: '0 0 * * *' # every day at 0:00(UTC)
+  push:
+    branches:
+      - "main"
+  # schedule:
+  #   - cron: '0 0 * * *' # every day at 0:00(UTC)
 
 jobs:
   check_freshness:

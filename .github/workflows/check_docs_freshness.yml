@@ -1,0 +1,19 @@
+name: Check docs freshness
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # every day at 0:00(UTC)
+
+jobs:
+  check_freshness:
+    run-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: ./script/list_stale_docs.sh
+
+      - if: ${{ success() }}
+        run: echo "success"
+
+      - if: ${{ failure() }}
+        run: echo "failure"

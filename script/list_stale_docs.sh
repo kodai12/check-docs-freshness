@@ -4,6 +4,7 @@ cd `dirname $0`
 
 threshold=""
 
+# 3ヶ月以上更新がなかったら
 if [ "$(uname)" == "Darwin" ]; then
   threshold=$(date -v -3m +%s)
 else

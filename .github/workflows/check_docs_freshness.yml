@@ -1,9 +1,6 @@
 name: Check docs freshness
 
 on:
-  push:
-    branches:
-      - "test-branch"
   # schedule:
   #   - cron: '0 0 * * *' # every day at 0:00(UTC)
 
